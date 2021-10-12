@@ -13,9 +13,9 @@
     <!-- list body-->
     <div class="container">
     <div class="input-group">
-      <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username with two button addons">
-      <button class="btn btn-outline-secondary" type="button">Add</button>
-      <button class="btn btn-outline-secondary" type="button">Delete</button>
+      <input type="text" class="form-control newItem" placeholder="Recipient's username" aria-label="Recipient's username with two button addons">
+      <button class="btn btn-outline-secondary addButton" type="button">Add</button>
+      <button class="btn btn-outline-secondary removeButton" type="button">Delete</button>
     </div>
     </div>
     <div class="container py-5 h-100">
@@ -27,10 +27,10 @@
               <p class="mb-2"><span class="h2 me-2">To DO LSIT</span> <span class="badge bg-danger">checklist</span></p>
               <p class="text-muted pb-2">12.10.2021 thu </p>
   
-              <ul class="list-group rounded-0">
+              <ul class="list-group rounded-0 listContent">
                 <li class="list-group-item border-0 d-flex align-items-center ps-0">
                   <input class="form-check-input me-3" type="checkbox" value="" aria-label="..." checked />
-                  <s>Abdullah</s>
+                  <s >Abdullah</s>
                 </li>
                 <li class="list-group-item border-0 d-flex align-items-center ps-0">
                   <input class="form-check-input me-3" type="checkbox" value="" aria-label="..." />
@@ -69,5 +69,6 @@
       crossorigin="anonymous"
       src="app.js"
     ></script>
+    <script src="/2app.js"></script>
   </body>
 </html>
