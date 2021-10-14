@@ -139,3 +139,7 @@ i {
 .card-footer {
   background-color: #fff;
 }
+
+.crossOut {
+  text-decoration: line-through;
+}
