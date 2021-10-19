@@ -1,5 +1,4 @@
 //------------------SELECTORS------------------//
-
 const addButton = document.querySelector(".addButton");
 const removeButton = document.querySelector(".removeButton");
 const inputField = document.querySelector(".inputField");
@@ -27,8 +26,8 @@ function saveTodosToLocalStorage(item) {
   localStorage.setItem("todos", JSON.stringify(todos));
 }
 
+//LIST ALL TODOS THAT ARE SAVE IN THE LOCAL STORAGE WHEN OPENING/REFRESHING THE PAGE
 listAllTodos();
-
 function listAllTodos() {
   todos.forEach((todo) => {
     const toDoLi = document.createElement("li");
@@ -42,23 +41,25 @@ function listAllTodos() {
     );
     listContent.appendChild(toDoLi);
     toDoLi.innerHTML = `<input class="form-check-input me-3" type="checkbox" value="" aria-label="..." /> <div>${todo}</div>`;
-
-    //GRABBING ALL CHECKBOXES AND ADDING AN EVENT LISTENER TO THEM
-    const checkboxActive = document.querySelectorAll(".form-check-input");
-    checkboxActive.forEach((box) => {
-      box.addEventListener("click", selectingItem);
-    });
-
-    //GRABBING ALL DIVS (TODOS) THAT CAN BE EDITED AND ADDING AN EVENT LISTENER TO THEM
-    const edit = document.querySelectorAll("li div");
-    edit.forEach((item) => {
-      item.addEventListener("dblclick", editItem);
-    });
-
-    //CLEARING THE INPUT VALUE
-    inputField.value = "";
+    addAllRelevantEventListenersToNewTodo();
   });
-  listingTodos = false;
+}
+
+function addAllRelevantEventListenersToNewTodo() {
+  //GRABBING ALL CHECKBOXES AND ADDING AN EVENT LISTENER TO THEM
+  const checkboxActive = document.querySelectorAll(".form-check-input");
+  checkboxActive.forEach((box) => {
+    box.addEventListener("click", selectingItem);
+  });
+
+  //GRABBING ALL DIVS (TODOS) THAT CAN BE EDITED AND ADDING AN EVENT LISTENER TO THEM
+  const edit = document.querySelectorAll("li div");
+  edit.forEach((item) => {
+    item.addEventListener("dblclick", editTodo);
+  });
+
+  //CLEARING THE INPUT VALUE
+  inputField.value = "";
 }
 
 //ADDING A NEW TODO
@@ -79,66 +80,61 @@ function addingTodos() {
     );
     listContent.appendChild(toDoLi);
     toDoLi.innerHTML = `<input class="form-check-input me-3" type="checkbox" value="" aria-label="..." /> <div>${inputField.value}</div>`;
-
-    //GRABBING ALL CHECKBOXES AND ADDING AN EVENT LISTENER TO THEM
-    const checkboxActive = document.querySelectorAll(".form-check-input");
-    checkboxActive.forEach((box) => {
-      box.addEventListener("click", selectingItem);
-    });
-
-    //GRABBING ALL DIVS (TODOS) THAT CAN BE EDITED AND ADDING AN EVENT LISTENER TO THEM
-    const edit = document.querySelectorAll("li div");
-    edit.forEach((item) => {
-      item.addEventListener("dblclick", editItem);
-    });
-
     //SAVING TODOS TO THE LOCAL STORAGE
     saveTodosToLocalStorage(inputField.value);
 
-    //CLEARING THE INPUT VALUE
-    inputField.value = "";
+    addAllRelevantEventListenersToNewTodo();
   }
 }
 
+//TOGGLE CROSS OUT CSS CLASSES
 function selectingItem(event) {
   event.target.parentNode.classList.toggle("deleteMe");
   event.target.parentNode.classList.toggle("crossOut");
 }
 
+//DELETING AN ITEM
 function deletingItem() {
+  //GRABBING ALL ELEMENTS THAT ARE CROSSED OUT BY SELECTING ALL ELEMENTS WITH CLASS .crossOut
   const toBeDeleted = document.querySelectorAll(".crossOut");
   toBeDeleted.forEach((element) => {
-    console.log(element.children[1].innerText);
-
-    // COMMENT HERE LATER
+    //SPLICE (REMOVE ITEM FROM ARRAY) BY SEARCHING FOR THE INNER TEXT OF THE SECOND CHILDREN OF LI ELEMENT
     todos.splice(todos.indexOf(element.children[1].innerText), 1);
-    console.log(todos);
-    localStorage.setItem("todos", JSON.stringify(todos));
+    element.remove();
   });
-  toBeDeleted.forEach((box) => {
-    box.remove();
-    // console.log(box);
-  });
+  //UPDATE LOCAL STORAGE
+  localStorage.setItem("todos", JSON.stringify(todos));
 }
 
-function editItem(event) {
-  console.log(event.target.innerText);
+//FEATURE TO EDIT TODO
+function editTodo(event) {
+  //CREATE NEW INPUT FIELD
   const inputField = document.createElement("input");
+  //ADD DIV TEXT (TODO TEXT) TO THE INPUT VALUE
   inputField.value = event.target.innerText;
+  //GRAB FUTURE PARENT ELEMENT OF NEWLY CREATED INPUT
   const liParent = event.target.parentNode;
+  //APPEND INPUT TO LI ELEMENT
+  liParent.appendChild(inputField);
+  event.target.remove();
 
+  //ADD EVENTLISTENER TO NEWLY CREATED INPUT
   inputField.addEventListener("keyup", (e) => {
+    //CHECK IF KEY THAT WAS PRESSED WAS ENTER OR ESCAPE KEY
     if (e.key === "Enter" || e.key === "Escape") {
+      //CREATE NEW DIV ELEMENT
       const editedDiv = document.createElement("div");
+      //SET INNERTEXT OF NEW DIV ELEMENT TO THE CURRENT INPUT VALUE
       editedDiv.innerText = inputField.value;
+      //APPEND NEW DIV TO LI ELEMENT
       liParent.appendChild(editedDiv);
+      //REMOVE INPUT
       inputField.remove();
+      //ADD EVENT LISTENER TO EVERY EDITABLE DIV (TODO TEXT)
       edit = document.querySelectorAll("li div");
       edit.forEach((item) => {
-        item.addEventListener("dblclick", editItem);
+        item.addEventListener("dblclick", editTodo);
       });
     }
   });
-  event.target.parentNode.appendChild(inputField);
-  event.target.remove();
 }
