@@ -121,12 +121,14 @@ function editTodo(event) {
   const liParent = event.target.parentNode;
   //APPEND INPUT TO LI ELEMENT
   liParent.appendChild(inputField);
-  event.target.remove();
 
   //ADD EVENTLISTENER TO NEWLY CREATED INPUT
   inputField.addEventListener("keyup", (e) => {
     //CHECK IF KEY THAT WAS PRESSED WAS ENTER OR ESCAPE KEY
     if (e.key === "Enter" || e.key === "Escape") {
+      //UPDATING THE LOCAL STORAGE
+      todos[todos.indexOf(event.target.innerText)] = inputField.value;
+      localStorage.setItem("todos", JSON.stringify(todos));
       //CREATE NEW DIV ELEMENT
       const editedDiv = document.createElement("div");
       //SET INNERTEXT OF NEW DIV ELEMENT TO THE CURRENT INPUT VALUE
@@ -142,4 +144,10 @@ function editTodo(event) {
       });
     }
   });
+  event.target.remove();
 }
+
+//SETTING TODAY'S DATE
+const dateToday = document.querySelector(".today-date");
+let today = new Date().toLocaleDateString();
+dateToday.innerText = today;
