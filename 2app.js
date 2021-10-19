@@ -1,39 +1,59 @@
-//SELECTORS
+//------------------SELECTORS------------------//
 
 const addButton = document.querySelector(".addButton");
 const removeButton = document.querySelector(".removeButton");
 const newItem = document.querySelector(".newItem");
 const listContent = document.querySelector(".listContent");
 
-console.log(addButton);
-console.log(removeButton);
-console.log(newItem);
-console.log(listContent);
-
-//EVENT LISTENERS
-addButton.addEventListener("click", addingItems);
+//------------------EVENT LISTENERS------------------//
+addButton.addEventListener("click", addingTodos);
 removeButton.addEventListener("click", deletingItem);
 
-//FUNCTIONS
+//CHECK LOCAL STORAGE: IF EMPTY CREATE NEW ARRAY todos; IF NOT EMPTY
+//ADD todos FROM LOCAL STORAGE TO ARRAY todos
+let todos;
+if (localStorage.getItem("todos") === null) {
+  todos = [];
+} else {
+  todos = JSON.parse(localStorage.getItem("todos"));
+}
 
-function addingItems() {
-  //console.log(newItem.value);
+//------------------FUNCTIONS------------------//
+//SAVING todos TO LOCAL STORAGE
+function saveTodosToLocalStorage(item) {
+  todos.push(item);
+  localStorage.setItem("todos", JSON.stringify(todos));
+}
+
+listAllTodos();
+
+function listAllTodos() {
+  // todos.forEach((todo) => {
+  //   const toDoLi = document.createElement("li");
+  //   toDoLi.classList.add(
+  //     "list-group-item",
+  //     "border-0",
+  //     "d-flex",
+  //     "align-todos-center",
+  //     "ps-0"
+  //   );
+  //   listContent.appendChild(toDoLi);
+  //   toDoLi.appendChild(toDoInput);
+  //   toDoLi.innerHTML = `<input class="form-check-input me-3" type="checkbox" value="" aria-label="..." /> <div>${element}</div>`;
+  // });
+}
+
+function addingTodos() {
   const toDoLi = document.createElement("li");
-  const toDoInput = document.createElement("input");
   toDoLi.innerText = newItem.value;
-  toDoInput.innerText = newItem.value;
-  //toDoInput.innerText = newItem.value
-
   toDoLi.classList.add(
     "list-group-item",
     "border-0",
     "d-flex",
-    "align-items-center",
+    "align-todos-center",
     "ps-0"
   );
-  //toDoInput.classList.add("form-check-input", "me-3");
   listContent.appendChild(toDoLi);
-  toDoLi.appendChild(toDoInput);
   toDoLi.innerHTML = `<input class="form-check-input me-3" type="checkbox" value="" aria-label="..." /> <div>${newItem.value}</div>`;
   //the not yet existing element being grabbed
   const checkboxActive = document.querySelectorAll(".form-check-input");
@@ -46,19 +66,25 @@ function addingItems() {
     item.addEventListener("dblclick", editItem);
   });
   console.log(edit);
+  saveTodosToLocalStorage(newItem.value);
   newItem.value = "";
 }
 
 function selectingItem(event) {
-  // newItem.classList.add('deleteMe');
-  //console.log(event.target);
-  //console.log(event.target.parentNode);
   event.target.parentNode.classList.toggle("deleteMe");
   event.target.parentNode.classList.toggle("crossOut");
 }
 
 function deletingItem() {
   const toBeDeleted = document.querySelectorAll(".crossOut");
+  toBeDeleted.forEach((element) => {
+    console.log(element.children[1].innerText);
+
+    // COMMENT HERE LATER
+    todos.splice(todos.indexOf(element.children[1].innerText), 1);
+    console.log(todos);
+    localStorage.setItem("todos", JSON.stringify(todos));
+  });
   toBeDeleted.forEach((box) => {
     box.remove();
     // console.log(box);
