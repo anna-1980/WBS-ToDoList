@@ -17,9 +17,11 @@ if (localStorage.getItem("todos") === null) {
 } else {
   todos = JSON.parse(localStorage.getItem("todos"));
 }
+//SETTING BOOLEAN TO TRUE
+let listingTodos = true;
 
 //------------------FUNCTIONS------------------//
-//SAVING todos TO LOCAL STORAGE
+//SAVING TODOS TO LOCAL STORAGE
 function saveTodosToLocalStorage(item) {
   todos.push(item);
   localStorage.setItem("todos", JSON.stringify(todos));
@@ -28,20 +30,37 @@ function saveTodosToLocalStorage(item) {
 listAllTodos();
 
 function listAllTodos() {
-  // todos.forEach((todo) => {
-  //   const toDoLi = document.createElement("li");
-  //   toDoLi.classList.add(
-  //     "list-group-item",
-  //     "border-0",
-  //     "d-flex",
-  //     "align-todos-center",
-  //     "ps-0"
-  //   );
-  //   listContent.appendChild(toDoLi);
-  //   toDoLi.appendChild(toDoInput);
-  //   toDoLi.innerHTML = `<input class="form-check-input me-3" type="checkbox" value="" aria-label="..." /> <div>${element}</div>`;
-  // });
+  todos.forEach((todo) => {
+    const toDoLi = document.createElement("li");
+    toDoLi.innerText = inputField.value;
+    toDoLi.classList.add(
+      "list-group-item",
+      "border-0",
+      "d-flex",
+      "align-todos-center",
+      "ps-0"
+    );
+    listContent.appendChild(toDoLi);
+    toDoLi.innerHTML = `<input class="form-check-input me-3" type="checkbox" value="" aria-label="..." /> <div>${todo}</div>`;
+
+    //GRABBING ALL CHECKBOXES AND ADDING AN EVENT LISTENER TO THEM
+    const checkboxActive = document.querySelectorAll(".form-check-input");
+    checkboxActive.forEach((box) => {
+      box.addEventListener("click", selectingItem);
+    });
+
+    //GRABBING ALL DIVS (TODOS) THAT CAN BE EDITED AND ADDING AN EVENT LISTENER TO THEM
+    const edit = document.querySelectorAll("li div");
+    edit.forEach((item) => {
+      item.addEventListener("dblclick", editItem);
+    });
+
+    //CLEARING THE INPUT VALUE
+    inputField.value = "";
+  });
+  listingTodos = false;
 }
+
 //ADDING A NEW TODO
 function addingTodos() {
   //CHECKING IF INPUT IS EMPTY
