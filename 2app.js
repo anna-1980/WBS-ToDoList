@@ -6,6 +6,11 @@ const listContent = document.querySelector(".listContent");
 
 //------------------EVENT LISTENERS------------------//
 addButton.addEventListener("click", addingTodos);
+inputField.addEventListener("keyup", (e) => {
+  if (e.key === "Enter") {
+    addingTodos();
+  }
+});
 removeButton.addEventListener("click", deletingItem);
 
 //CHECK LOCAL STORAGE: IF EMPTY CREATE NEW ARRAY todos; IF NOT EMPTY
