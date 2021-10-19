@@ -2,7 +2,7 @@
 
 const addButton = document.querySelector(".addButton");
 const removeButton = document.querySelector(".removeButton");
-const newItem = document.querySelector(".newItem");
+const inputField = document.querySelector(".inputField");
 const listContent = document.querySelector(".listContent");
 
 //------------------EVENT LISTENERS------------------//
@@ -42,32 +42,43 @@ function listAllTodos() {
   //   toDoLi.innerHTML = `<input class="form-check-input me-3" type="checkbox" value="" aria-label="..." /> <div>${element}</div>`;
   // });
 }
-
+//ADDING A NEW TODO
 function addingTodos() {
-  const toDoLi = document.createElement("li");
-  toDoLi.innerText = newItem.value;
-  toDoLi.classList.add(
-    "list-group-item",
-    "border-0",
-    "d-flex",
-    "align-todos-center",
-    "ps-0"
-  );
-  listContent.appendChild(toDoLi);
-  toDoLi.innerHTML = `<input class="form-check-input me-3" type="checkbox" value="" aria-label="..." /> <div>${newItem.value}</div>`;
-  //the not yet existing element being grabbed
-  const checkboxActive = document.querySelectorAll(".form-check-input");
-  checkboxActive.forEach((box) => {
-    box.addEventListener("click", selectingItem);
-    console.log(box);
-  });
-  const edit = document.querySelectorAll("li div");
-  edit.forEach((item) => {
-    item.addEventListener("dblclick", editItem);
-  });
-  console.log(edit);
-  saveTodosToLocalStorage(newItem.value);
-  newItem.value = "";
+  //CHECKING IF INPUT IS EMPTY
+  if (inputField.value === "") {
+    return;
+  } else {
+    //CREATING LI ELEMENT AND ADDING CLASSES, INNERHTML AND APPENDING IT TO THE UNORDERED LIST
+    const toDoLi = document.createElement("li");
+    toDoLi.innerText = inputField.value;
+    toDoLi.classList.add(
+      "list-group-item",
+      "border-0",
+      "d-flex",
+      "align-todos-center",
+      "ps-0"
+    );
+    listContent.appendChild(toDoLi);
+    toDoLi.innerHTML = `<input class="form-check-input me-3" type="checkbox" value="" aria-label="..." /> <div>${inputField.value}</div>`;
+
+    //GRABBING ALL CHECKBOXES AND ADDING AN EVENT LISTENER TO THEM
+    const checkboxActive = document.querySelectorAll(".form-check-input");
+    checkboxActive.forEach((box) => {
+      box.addEventListener("click", selectingItem);
+    });
+
+    //GRABBING ALL DIVS (TODOS) THAT CAN BE EDITED AND ADDING AN EVENT LISTENER TO THEM
+    const edit = document.querySelectorAll("li div");
+    edit.forEach((item) => {
+      item.addEventListener("dblclick", editItem);
+    });
+
+    //SAVING TODOS TO THE LOCAL STORAGE
+    saveTodosToLocalStorage(inputField.value);
+
+    //CLEARING THE INPUT VALUE
+    inputField.value = "";
+  }
 }
 
 function selectingItem(event) {
