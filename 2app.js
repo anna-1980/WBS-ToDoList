@@ -143,3 +143,8 @@ function editTodo(event) {
     }
   });
 }
+
+//SETTING TODAY'S DATE
+const dateToday = document.querySelector(".today-date");
+let today = new Date().toLocaleDateString();
+dateToday.innerText = today;
