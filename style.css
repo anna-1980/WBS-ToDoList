@@ -147,3 +147,13 @@ i {
 li div {
   cursor: pointer;
 }
+
+.listbody{
+  background-image: url("notebook-page6.png");
+  background-size:contain;
+  opacity:0.75;
+  background-repeat:repeat-y;
+}
+#paperlike li{
+  background: rgb(41, 90, 41, 0);
+}
