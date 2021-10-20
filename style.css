@@ -148,6 +148,7 @@ li div {
   cursor: pointer;
 }
 
+/*adding a nice background to the list*/ 
 .listbody{
   background-image: url("notebook-page6.png");
   background-size:contain;
