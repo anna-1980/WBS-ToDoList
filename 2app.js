@@ -123,8 +123,10 @@ function editTodo(event) {
   liParent.appendChild(inputField);
 
   //ADD EVENTLISTENER TO NEWLY CREATED INPUT
-  inputField.addEventListener("keyup", (e) => {
+  inputField.addEventListener("keyup", endEdit);
+  inputField.addEventListener("mouseleave", endEdit2);
     //CHECK IF KEY THAT WAS PRESSED WAS ENTER OR ESCAPE KEY
+  function endEdit(e) {
     if (e.key === "Enter" || e.key === "Escape") {
       //UPDATING THE LOCAL STORAGE
       todos[todos.indexOf(event.target.innerText)] = inputField.value;
@@ -143,7 +145,25 @@ function editTodo(event) {
         item.addEventListener("dblclick", editTodo);
       });
     }
-  });
+  };
+  function endEdit2(e){
+        //UPDATING THE LOCAL STORAGE
+        todos[todos.indexOf(event.target.innerText)] = inputField.value;
+        localStorage.setItem("todos", JSON.stringify(todos));
+        //CREATE NEW DIV ELEMENT
+        const editedDiv = document.createElement("div");
+        //SET INNERTEXT OF NEW DIV ELEMENT TO THE CURRENT INPUT VALUE
+        editedDiv.innerText = inputField.value;
+        //APPEND NEW DIV TO LI ELEMENT
+        liParent.appendChild(editedDiv);
+        //REMOVE INPUT
+        inputField.remove();
+        //ADD EVENT LISTENER TO EVERY EDITABLE DIV (TODO TEXT)
+        edit = document.querySelectorAll("li div");
+        edit.forEach((item) => {
+          item.addEventListener("dblclick", editTodo);
+        });
+  }
   event.target.remove();
 }
 
