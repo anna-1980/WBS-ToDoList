@@ -142,23 +142,122 @@ i {
 
 .crossOut {
   text-decoration: line-through;
-  opacity:0.4;
+  opacity: 0.4;
 }
 
 li div {
   cursor: pointer;
 }
 
-/*adding a nice background to the list*/ 
-.listbody{
+/*adding a nice background to the list*/
+.listbody {
   background-image: url("notebook-page6.png");
-  background-size:contain;
-  opacity:0.75;
-  background-repeat:repeat-y;
+  background-size: contain;
+  opacity: 0.75;
+  background-repeat: repeat-y;
+  font-size: 2rem;
+  font-family: 'Coming Soon', cursive;
 }
-#paperlike li{
+#paperlike li {
   background: rgb(41, 90, 41, 0);
+  font-size: 0.5rem;
 }
-#higher{
+#higher {
   margin-top: 2rem;
 }
+
+ 
+ 
+#addbtn {
+  background-color: #569962;
+  color: #e5f6e8;
+  border-top-left-radius: 30px;
+  border-bottom-left-radius: 30px;
+  border: none;
+  box-shadow: 3px 3px 3px #4d4c4c;
+  cursor: pointer;
+  font-family: 'Coming Soon', cursive;
+}
+
+#addbtn::active {
+  cursor: pointer;
+  background-color: #975699;
+  
+}
+
+#delBTN {
+  all: unset;
+}
+
+#delBTN {
+  background-color: #f3712f;
+  color: #e3f1dd;
+  border-top-left-radius: 0px;
+  border-top-right-radius: 30px;
+  border-bottom-right-radius: 30px;
+  box-shadow: 3px 3px 3px #4d4c4c;
+  border: none;
+  cursor: pointer;
+  font-family: 'Coming Soon', cursive;
+}
+#haveToDo {
+  background-color: #f2f6fa;
+  border-top-left-radius: 30px;
+  border-bottom-right-radius: 30px;
+  border-top-right-radius: 0px;
+  font-family: 'Coming Soon', cursive;
+  padding: 0px;
+  padding-left: 1.5rem;
+  font-size: 1rem;
+}
+.background {
+  background-image: -webkit-linear-gradient(
+    270deg,
+    rgba(227, 251, 238, 1) 0%,
+    rgba(87, 174, 119, 1) 100%
+  );
+  background-image: -moz-linear-gradient(
+    270deg,
+    rgba(227, 251, 238, 1) 0%,
+    rgba(87, 174, 119, 1) 100%
+  );
+  background-image: -o-linear-gradient(
+    270deg,
+    rgba(227, 251, 238, 1) 0%,
+    rgba(87, 174, 119, 1) 100%
+  );
+  background-image: linear-gradient(
+    180deg,
+    rgba(227, 251, 238, 1) 0%,
+    rgba(87, 174, 119, 1) 100%
+  );
+}
+
+.transparent {
+  background: none;
+}
+
+.form-check-input {
+  width: 2.5em;
+  height: 2.5em;
+}
+
+div {
+  font-size: 1.5rem;
+}
+.list {
+  font-size: 1.8rem;
+}
+
+.today-date{
+  font-size: 1.2rem;
+}
+/*
+  background-color: #569962;
+  color: #e5f6e8;
+  border-top-left-radius: 30px;
+  border-bottom-left-radius: 30px;
+  border: none;
+  box-shadow: 3px 3px 3px #4d4c4c;
+  cursor: pointer;
+  */
