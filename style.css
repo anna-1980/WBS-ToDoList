@@ -245,6 +245,7 @@ li div {
 }
 
 .background {
+  object-fit: cover;
   background-image: -webkit-linear-gradient(
     270deg,
     rgb(181, 228, 193) 0%,
