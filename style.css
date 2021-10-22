@@ -145,6 +145,9 @@ i {
   opacity: 0.4;
 }
 
+
+/*custom styling of the List*/
+
 li div {
   cursor: pointer;
 }
@@ -167,6 +170,7 @@ li div {
   margin-top: 2rem;
 }
 
+/*new style functional buttons*/
 #addbtn {
   background-color: #52965e;
   color: #e5f6e8;
@@ -180,11 +184,6 @@ li div {
   padding: 0.3rem 0.4rem 0.2rem 0.4rem;
 }
 
-@keyframes spin {
-  100% {
-    transform: rotate(360deg);
-  }
-}
 
 #addbtn:hover {
   cursor: pointer;
@@ -279,7 +278,7 @@ li div {
 .form-check-input {
   min-width: 2.5em;
   min-height: 2.5em;
-  border-top: solid $b rgba(#000, .2);
+  
 }
 
 div {
@@ -308,9 +307,21 @@ div {
   font-size: 3rem;
   padding: 0;
   color: black;
+   background-position: center;
    
   transition: box-shadow 4s ease-out;
   animation: spin 10s linear infinite;
+}
+img{
+  max-width: 6vh;
+  max-height: 6vh;
+}
+
+/*cool animation*/
+@keyframes spin {
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 /*
