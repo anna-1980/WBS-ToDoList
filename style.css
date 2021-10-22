@@ -142,19 +142,194 @@ i {
 
 .crossOut {
   text-decoration: line-through;
+  opacity: 0.4;
 }
+
+
+/*custom styling of the List*/
 
 li div {
   cursor: pointer;
 }
 
-/*adding a nice background to the list*/ 
-.listbody{
+/*adding a nice background to the list*/
+.listbody {
   background-image: url("notebook-page6.png");
-  background-size:contain;
-  opacity:0.75;
-  background-repeat:repeat-y;
+  background-size: contain;
+  opacity: 0.75;
+  background-repeat: repeat-y;
+  font-size: 2rem;
+  font-family: "Coming Soon", cursive;
+  box-shadow: 3px 3px 5px #4c634e;
 }
-#paperlike li{
+#paperlike li {
   background: rgb(41, 90, 41, 0);
+  font-size: 0.5rem;
 }
+#higher {
+  margin-top: 2rem;
+}
+
+/*new style functional buttons*/
+#addbtn {
+  background-color: #52965e;
+  color: #e5f6e8;
+  border-top-left-radius: 30px;
+  border-bottom-left-radius: 30px;
+  border: none;
+  box-shadow: 0px 3px #4c634e;
+  cursor: pointer;
+  font-family: "Coming Soon", cursive;
+  font-size: 1.2rem;
+  padding: 0.3rem 0.4rem 0.2rem 0.4rem;
+}
+
+
+#addbtn:hover {
+  cursor: pointer;
+  background-color: #357240;
+  transition: 0.3s;
+}
+
+#addbtn:active {
+  cursor: pointer;
+  background-color: #6dbd7b;
+  box-shadow: none;
+  transform: translateY(3px);
+
+  box-shadow: -2px 1px 15px rgb(156, 242, 127);
+  transition: 0.3s;
+}
+
+#delBTN {
+  background-color: #fa7c3e;
+  color: #e3f1dd;
+  border-top-left-radius: 0px;
+  border-top-right-radius: 30px;
+  border-bottom-right-radius: 30px;
+  box-shadow: 0px 3px #4c634e;
+  border: none;
+  cursor: pointer;
+  font-family: "Coming Soon", cursive;
+  font-size: 1.2rem;
+  padding: 0.3rem 0.4rem 0.2rem 0.4rem;
+}
+
+#delBTN:hover {
+  cursor: pointer;
+  background-color: #e46e33;
+  transition: 0.3s;
+}
+
+#delBTN:active {
+  cursor: pointer;
+  background-color: #ec452b;
+  transform: translateY(3px);
+  box-shadow: none;
+  transition: 0.3s;
+  box-shadow: -2px 2px 15px rgb(242, 127, 127);
+}
+
+#haveToDo {
+  background-color: #f2f6fa;
+  border-top-left-radius: 30px;
+  border-bottom-right-radius: 30px;
+  border-top-right-radius: 0px;
+  font-family: "Coming Soon", cursive;
+  padding-top: 10px;
+  padding-bottom: 2px; 
+
+  padding-left: 1.5rem;
+  font-size: 1.5rem;
+  box-shadow: inset 0.1em 0.1em 7px rgb(148, 148, 148);
+}
+
+.background {
+  background-image: -webkit-linear-gradient(
+    270deg,
+    rgb(181, 228, 193) 0%,
+    rgb(56, 134, 65) 100%
+  );
+  background-image: -moz-linear-gradient(
+    270deg,
+    rgb(181, 228, 193) 0%,
+    rgb(56, 134, 65) 100%
+  );
+  background-image: -o-linear-gradient(
+    270deg,
+    rgb(181, 228, 193) 0%,
+    rgb(56, 134, 65) 100%
+  );
+  background-image: linear-gradient(
+    180deg,
+    rgb(181, 228, 193) 0%,
+    rgb(56, 134, 65) 100%
+  );
+  padding-bottom: 20rem;
+}
+
+.transparent {
+  background: none;
+  
+}
+
+ 
+
+.form-check-input {
+  min-width: 2.5em;
+  min-height: 2.5em;
+  
+}
+
+div {
+  font-size: 1.5rem;
+}
+.list {
+  font-size: 1.8rem;
+}
+
+.today-date {
+  font-size: 1.2rem;
+}
+
+.list-group-item {
+  padding-top: 0.1rem;
+  padding-bottom: 0.1rem;
+  overflow-wrap: anywhere;
+}
+
+.input-group {
+  align-items: center;
+  justify-content: center;
+  
+}
+.badge {
+  font-size: 3rem;
+  padding: 0;
+  color: black;
+   background-position: center;
+   
+  transition: box-shadow 4s ease-out;
+  animation: spin 10s linear infinite;
+}
+img{
+  max-width: 6vh;
+  max-height: 6vh;
+}
+
+/*cool animation*/
+@keyframes spin {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/*
+  background-color: #569962;
+  color: #e5f6e8;
+  border-top-left-radius: 30px;
+  border-bottom-left-radius: 30px;
+  border: none;
+  box-shadow: 3px 3px 3px #4d4c4c;
+  cursor: pointer;
+  */

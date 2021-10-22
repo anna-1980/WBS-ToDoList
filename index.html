@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="transparent">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -7,24 +7,27 @@
     <link rel="stylesheet" href="bootstrap.min.css" />
     <link rel="stylesheet" href="style.css" />
     <title>TO DO LIST</title>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Coming+Soon&display=swap');
+      </style>
   </head>
 
-  <body>
+  <body class="background">
     <!-- list body-->
     <div class="container">
     <div class="input-group">
-      <input type="text" class="form-control inputField" placeholder="New Todo" aria-label="Recipient's username with two button addons">
-      <button class="btn btn-outline-secondary addButton" type="button">Add</button>
-      <button class="btn btn-outline-secondary removeButton" type="button">Delete</button>
+      <input id='haveToDo'  type="text" class=" form-control inputField " placeholder="New Todo" aria-label="Recipient's username with two button addons">
+      <button class="    addButton " id="addbtn" type="button">Add</button>
+      <button class="    removeButton" id="delBTN" type="button">Delete</button>
     </div>
     </div>
-    <div class="container py-5 h-100">
+    <div class="container py-1 h-100" id="higher">
       <div class="row d-flex justify-content-center align-items-center h-100">
         <div class="col col-lg-8 col-xl-6">
           <div class="card rounded-3">
             <div class="card-body p-4 listbody">
   
-              <p class="mb-2"><span class="h2 me-2">To DO LIST</span> <span class="badge bg-danger">checklist</span></p>
+              <p class="mb-2"><span class="h2 me-2 list">To DO LIST</span> <span class="badge"><img src="/cogs-01.png"></span></p>
               <p class="text-muted pb-2 today-date"></p>
   
               <ul class="list-group rounded-0 listContent" id="paperlike">
@@ -53,3 +56,5 @@
     <script src="2app.js"></script>
   </body>
 </html>
+
+<!--emoticon just in case ☯-->
