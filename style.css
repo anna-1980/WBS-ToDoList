@@ -311,7 +311,7 @@ div {
    background-position: center;
    
   transition: box-shadow 4s ease-out;
-  animation: spin 10s linear infinite;
+  animation: spin 20s linear infinite;
 }
 img{
   max-width: 6vh;
